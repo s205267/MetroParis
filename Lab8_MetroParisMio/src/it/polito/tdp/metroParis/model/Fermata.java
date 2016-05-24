@@ -1,5 +1,8 @@
 package it.polito.tdp.metroParis.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.javadocmd.simplelatlng.LatLng;
 
 public class Fermata {
@@ -7,6 +10,8 @@ public class Fermata {
 	private int id_fermata;
 	private String nome;
 	private LatLng coords;
+	private List<FermataSuLinea> fermateSuLinea=new ArrayList<>();
+
 	public Fermata(int id_fermata, String nome, LatLng coords) {
 		super();
 		this.id_fermata = id_fermata;
@@ -15,6 +20,16 @@ public class Fermata {
 	}
 	public Fermata(int idStazP) {
 this.id_fermata= idStazP;
+	}
+	
+	public List<FermataSuLinea> getFermateSuLinea() {
+		return fermateSuLinea;
+	}
+	public void setFermateSuLinea(List<FermataSuLinea> fermateSuLinea) {
+		this.fermateSuLinea = fermateSuLinea;
+	}
+	public void addFermataSuLinea(FermataSuLinea fermataSuLinea) {
+		this.fermateSuLinea.add(fermataSuLinea);
 	}
 	public int getId_fermata() {
 		return id_fermata;

@@ -45,13 +45,45 @@ public class metroController {
     @FXML
     void doCalcola(ActionEvent event) {
     	
-    	txtRisultato.clear();
-    	Fermata stazP = this.cmbPartenza.getValue();
-    	Fermata stazA = this.cmbArrivo.getValue();
-    	String stampa = model.calcolaPercorso(stazP,stazA);
-    	
-    	txtRisultato.appendText(stampa+"\n");
-    	
+    	Fermata stazioneDiPartenza = this.cmbPartenza.getValue();
+		Fermata stazioneDiArrivo = this.cmbArrivo.getValue();
+
+		if (stazioneDiPartenza != null && stazioneDiArrivo != null) {
+
+			if (!stazioneDiPartenza.equals(stazioneDiArrivo)) {
+
+				try {
+					// Calcolo il percorso tra le due stazioni
+					model.calcolaPercorso(stazioneDiPartenza, stazioneDiArrivo);
+
+					// Ottengo il tempo di percorrenza
+					int tempoTotaleInSecondi = (int) model.getPercorsoTempoTotale();
+					int ore = tempoTotaleInSecondi / 3600;
+					int minuti = (tempoTotaleInSecondi % 3600) / 60;
+					int secondi = tempoTotaleInSecondi % 60;
+					String timeString = String.format("%02d:%02d:%02d", ore, minuti, secondi);
+
+					StringBuilder risultato = new StringBuilder();
+					// Ottengo il percorso
+					risultato.append(model.getPercorsoEdgeList());
+					risultato.append("\n\nTempo di percorrenza stimato: " + timeString + "\n");
+
+					// Aggiorno la TextArea
+					txtRisultato.setText(risultato.toString());
+					
+				} catch (RuntimeException e) {
+					txtRisultato.setText(e.getMessage());
+				}
+
+			} else {
+
+				txtRisultato.setText("Inserire una stazione di arrivo diversa da quella di partenza.");
+			}
+			
+		} else {
+			
+			txtRisultato.setText("Inserire una stazione di arrivo ed una di partenza.");
+		}
     	
     }
 
