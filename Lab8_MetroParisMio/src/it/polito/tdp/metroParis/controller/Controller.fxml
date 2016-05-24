@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.metroParis.controller.metroController">
+   <top>
+      <Label text="LAB 8 METRO PARIS" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="78.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../rsc/RATP.png" />
+                     </image>
+                  </ImageView>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Selezionare una stazione di partenza:">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="cmbPartenza" prefHeight="25.0" prefWidth="198.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="5.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <Label text="Selezionare una stazione di arrivo:" />
+                        <ComboBox fx:id="cmbArrivo" prefHeight="25.0" prefWidth="198.0">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <Button fx:id="bttCalcola" mnemonicParsing="false" onAction="#doCalcola" text="Calcola distanza">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <TextArea fx:id="txtRisultato" prefHeight="200.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </TextArea>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
